@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Edit Post')
 @section('content')
-    <form action="{{ route('posts.update') }}" method="POST">
+    <form action="{{ route('posts.update', $post['id']) }}" method="POST">
+
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <label class="form-label">Title</label>
             <input name="title" type="text" class="form-control" value="{{ $post['title'] }}">

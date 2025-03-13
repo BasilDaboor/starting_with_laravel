@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\alert;
+use function Laravel\Prompts\confirm;
+
 class PostsController extends Controller
 {
     public function index()
@@ -97,12 +100,19 @@ class PostsController extends Controller
                 'email' => 'Zaid@gmail.com'
             ]
         ];
+
         return view('posts.edit', ['post' => $allPosts[$postId - 1]]);
     }
     public function update($postId)
     {
         // $data = request()->all();
         // return redirect()->route('posts.show', ['post' => $postId]);
-        return "update post with id: $postId";
+        return to_route('posts.show', ['post' => $postId]);
+    }
+
+    public function destroy($postId)
+    {
+
+        return to_route('posts.index');
     }
 }
